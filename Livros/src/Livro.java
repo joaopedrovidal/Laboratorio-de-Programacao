@@ -8,15 +8,17 @@
  * @author Aluno
  */
 public abstract class Livro {
-
+    int codigo;
     String titulo;
     String autor;
     int numeroDePaginas;
+    Enum tipoLivro;
 
-    public Livro(String titulo, String autor, int numeroDePaginas) {
+    public Livro(String titulo, String autor, int numeroDePaginas, int codigo) {
         this.titulo = titulo;
         this.autor = autor;
         this.numeroDePaginas = numeroDePaginas;
+        this.codigo = codigo;
     }
 
     public String getTitulo() {
@@ -42,8 +44,22 @@ public abstract class Livro {
     public void setNumeroDePaginas(int numeroDePaginas) {
         this.numeroDePaginas = numeroDePaginas;
     }
-    
-    
-    
+
+    public Enum getTipoLivro() {
+        return tipoLivro;
+    }
+
+    public void setTipoLivro(Enum tipoLivro) {
+        this.tipoLivro = tipoLivro;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
     public abstract void descricao();
 }

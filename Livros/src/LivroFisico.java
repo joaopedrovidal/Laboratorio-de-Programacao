@@ -10,8 +10,8 @@
 public class LivroFisico extends Livro {
     double peso;
 
-    public LivroFisico(double peso, String titulo, String autor, int numeroDePaginas) {
-        super(titulo, autor, numeroDePaginas);
+    public LivroFisico(double peso, String titulo, String autor, int numeroDePaginas, int codigo) {
+        super(titulo, autor, numeroDePaginas, codigo);
         this.peso = peso;
     }
     

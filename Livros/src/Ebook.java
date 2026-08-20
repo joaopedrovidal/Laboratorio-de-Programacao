@@ -10,8 +10,8 @@
 public class Ebook extends Livro {
     double tamanhoArquivo;
     
-    public Ebook(double tamanhoArquivo, String titulo, String autor, int numeroDePaginas) {
-        super(titulo, autor, numeroDePaginas);
+    public Ebook(double tamanhoArquivo, String titulo, String autor, int numeroDePaginas,  int codigo) {
+        super(titulo, autor, numeroDePaginas, codigo);
         this.tamanhoArquivo = tamanhoArquivo;
     }
     
