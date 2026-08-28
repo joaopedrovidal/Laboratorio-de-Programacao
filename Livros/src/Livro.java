@@ -12,7 +12,6 @@ public abstract class Livro {
     String titulo;
     String autor;
     int numeroDePaginas;
-    Enum tipoLivro;
 
     public Livro(String titulo, String autor, int numeroDePaginas, int codigo) {
         this.titulo = titulo;
@@ -45,13 +44,6 @@ public abstract class Livro {
         this.numeroDePaginas = numeroDePaginas;
     }
 
-    public Enum getTipoLivro() {
-        return tipoLivro;
-    }
-
-    public void setTipoLivro(Enum tipoLivro) {
-        this.tipoLivro = tipoLivro;
-    }
 
     public int getCodigo() {
         return codigo;

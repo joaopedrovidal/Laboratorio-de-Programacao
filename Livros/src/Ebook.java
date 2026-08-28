@@ -14,7 +14,15 @@ public class Ebook extends Livro {
         super(titulo, autor, numeroDePaginas, codigo);
         this.tamanhoArquivo = tamanhoArquivo;
     }
-    
+
+    public void setTamanhoArquivo(double tamanhoArquivo) {
+        this.tamanhoArquivo = tamanhoArquivo;
+    }
+
+    public double getTamanhoArquivo() {
+        return tamanhoArquivo;
+    }
+
     @Override public void descricao(){
         System.out.println("Este e um Ebook: " + this.titulo);
     }

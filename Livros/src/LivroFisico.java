@@ -14,7 +14,15 @@ public class LivroFisico extends Livro {
         super(titulo, autor, numeroDePaginas, codigo);
         this.peso = peso;
     }
-    
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
     @Override public void descricao(){
         System.out.println("Este e um livro fisico: " + this.titulo);
     }
