@@ -31,7 +31,7 @@ public class Principal {
 
                         "\n\n--- MENU DE PESSOAS ---" +
                         "\nDigite 6 para Cadastrar uma Pessoa" +
-                        "\nDigite 7 para listar Pessoas" +
+                        "\nDigite 7 para Listar Pessoas" +
                         "\nDigite 8 para Excluir uma Pessoa" +
                         "\nDigite 9 para Editar uma Pessoa" +
 

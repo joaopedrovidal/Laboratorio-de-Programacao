@@ -5,6 +5,16 @@ public class GerenciamentoDePessoas {
     ArrayList<Pessoa> pessoas = new ArrayList();
     Scanner scanner = new Scanner(System.in);
 
+    public boolean verificaSeexistePessoaPorCodigo(int codigo){
+        System.out.println();
+        for (Pessoa pessoa : pessoas){
+            if (codigo == pessoa.getCodigo()){
+                return true;
+            }
+        }
+        return false;
+    }
+
     int opcao = 0;
 
     public void cadastrarPessoa() {
@@ -28,6 +38,13 @@ public class GerenciamentoDePessoas {
                     System.out.println("Digite o codigo do Aluno: ");
                     int codigo = scanner.nextInt();
 
+                    while (verificaSeexistePessoaPorCodigo(codigo)){
+                        System.out.println("\nOps! Parece que ja existe uma Pessoa com esse Codigo! Escolha outro Codigo e tente novamente.");
+
+                        System.out.println("Digite o codigo do Aluno: ");
+                        codigo = scanner.nextInt();
+                    }
+
                     scanner.nextLine();
 
                     System.out.println("Digite o CPF do Aluno: ");
@@ -50,6 +67,13 @@ public class GerenciamentoDePessoas {
 
                     System.out.println("Digite o codigo do Bibliotecario: ");
                     int codigoBibliotecario = scanner.nextInt();
+
+                    while (verificaSeexistePessoaPorCodigo(codigoBibliotecario)){
+                        System.out.println("\nOps! Parece que ja existe uma Pessoa com esse Codigo! Escolha outro Codigo e tente novamente.");
+
+                        System.out.println("Digite o codigo do Bibliotecario: ");
+                        codigoBibliotecario = scanner.nextInt();
+                    }
 
                     scanner.nextLine();
 
