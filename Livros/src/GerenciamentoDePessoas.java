@@ -5,14 +5,26 @@ public class GerenciamentoDePessoas {
     ArrayList<Pessoa> pessoas = new ArrayList();
     Scanner scanner = new Scanner(System.in);
 
-    public boolean verificaSeexistePessoaPorCodigo(int codigo){
-        System.out.println();
+    public boolean verificaSeExistePessoaPorCodigo(int codigo){
         for (Pessoa pessoa : pessoas){
             if (codigo == pessoa.getCodigo()){
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean verificaSeExistePessoPorCpf(String cpf){
+        for (Pessoa pessoa : pessoas){
+            if (cpf.equals(pessoa.getCpf())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean verificaValidadeCpf(String cpf){
+        return cpf != null && cpf.matches("\\d{11}");
     }
 
     int opcao = 0;
@@ -38,7 +50,7 @@ public class GerenciamentoDePessoas {
                     System.out.println("Digite o codigo do Aluno: ");
                     int codigo = scanner.nextInt();
 
-                    while (verificaSeexistePessoaPorCodigo(codigo)){
+                    while (verificaSeExistePessoaPorCodigo(codigo)){
                         System.out.println("\nOps! Parece que ja existe uma Pessoa com esse Codigo! Escolha outro Codigo e tente novamente.");
 
                         System.out.println("Digite o codigo do Aluno: ");
@@ -49,6 +61,18 @@ public class GerenciamentoDePessoas {
 
                     System.out.println("Digite o CPF do Aluno: ");
                     String cpf = scanner.nextLine();
+
+
+                    while (!verificaValidadeCpf(cpf) || verificaSeExistePessoPorCpf(cpf)){
+                        if (!verificaValidadeCpf(cpf)){
+                            System.out.println("Ops! O CPF deve possuir exatamente 11 caracteres numericos.");
+                        }else {
+                            System.out.println("Ops! Parece que ja existe uma Pessoa com esse CPF! Escolha outro CPF e tente novamente.");
+                        }
+
+                        System.out.println("Digite o CPF do Aluno: ");
+                        cpf = scanner.nextLine();
+                    }
 
                     System.out.println("Digite o curso do Aluno: ");
                     String curso = scanner.nextLine();
@@ -68,7 +92,7 @@ public class GerenciamentoDePessoas {
                     System.out.println("Digite o codigo do Bibliotecario: ");
                     int codigoBibliotecario = scanner.nextInt();
 
-                    while (verificaSeexistePessoaPorCodigo(codigoBibliotecario)){
+                    while (verificaSeExistePessoaPorCodigo(codigoBibliotecario)){
                         System.out.println("\nOps! Parece que ja existe uma Pessoa com esse Codigo! Escolha outro Codigo e tente novamente.");
 
                         System.out.println("Digite o codigo do Bibliotecario: ");
@@ -79,6 +103,17 @@ public class GerenciamentoDePessoas {
 
                     System.out.println("Digite o CPF do Bibliotecario: ");
                     String cpfBibliotecario = scanner.nextLine();
+
+                    while (!verificaValidadeCpf(cpfBibliotecario) || verificaSeExistePessoPorCpf(cpfBibliotecario)){
+                        if (!verificaValidadeCpf(cpfBibliotecario)){
+                            System.out.println("Ops! O CPF deve possuir exatamente 11 caracteres numericos.");
+                        }else {
+                            System.out.println("Ops! Parece que ja existe uma Pessoa com esse CPF! Escolha outro CPF e tente novamente.");
+                        }
+
+                        System.out.println("Digite o CPF do Bibliotecario: ");
+                        cpfBibliotecario = scanner.nextLine();
+                    }
 
                     System.out.println("Digite o cargo do Bibliotecario: ");
                     String cargoBibliotecario = scanner.nextLine();
