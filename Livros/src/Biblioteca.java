@@ -17,6 +17,16 @@ public class Biblioteca {
 
     int opcao = 0;
 
+    public boolean verificaSeExisteLivroPorCodigo(int codigo){
+        for (Livro livro : livros){
+            if (codigo == livro.getCodigo()){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void cadastrarLivro(){
         while(true){
             System.out.println(
@@ -47,6 +57,13 @@ public class Biblioteca {
 
                     System.out.println("Digite o codigo do livro: ");
                     int codigo = scanner.nextInt();
+
+                    while(verificaSeExisteLivroPorCodigo(codigo)){
+                        System.out.println("\nOps! Parece que esse Codigo ja esta sendo usado em outro Livro. Tente digitar outro codigo para cadastrar o livro");
+
+                        System.out.println("Digite o Codigo do Livro: ");
+                        codigo = scanner.nextInt();
+                    }
 
                     scanner.nextLine();
 
@@ -79,6 +96,13 @@ public class Biblioteca {
 
                     System.out.println("Digite o codigo do livro: ");
                     int codigoEbook = scanner.nextInt();
+
+                    while(verificaSeExisteLivroPorCodigo(codigoEbook)){
+                        System.out.println("\nOps! Parece que esse Codigo ja esta sendo usado em outro Livro. Tente digitar outro codigo para cadastrar o livro");
+
+                        System.out.println("Digite o Codigo do Livro: ");
+                        codigoEbook = scanner.nextInt();
+                    }
 
                     scanner.nextLine();
 
