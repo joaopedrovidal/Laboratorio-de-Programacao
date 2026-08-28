@@ -68,6 +68,19 @@ public class GerenciamentoDeEmprestimos {
         return bibliotecarioEncontrado;
     }
 
+    private boolean verificarDisponibilidadeDoLivro(int codigoDoLivro){
+        for (Emprestimos emprestimo : emprestimos){
+            if(emprestimo.getDataDevolucao() == null){
+                for (Livro livro : emprestimo.getLivrosEmprestados()){
+                    if (livro.getCodigo() == codigoDoLivro){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     private ArrayList<Livro> informarLivrosDoEmprestimo(){
         System.out.println("Quantos livros serão emprestados?");
         int quantidade = scanner.nextInt();
@@ -83,16 +96,16 @@ public class GerenciamentoDeEmprestimos {
             Livro livroEncontrado = null;
 
             for (Livro livro : livros) {
+                while (livroEncontrado == null || !verificarDisponibilidadeDoLivro(codigoLivro)){
+                    if (livro.getCodigo() == codigoLivro) {
+                        livroEncontrado = livro;
+                        break;
+                    }
+                    System.out.println("Ops! Parece que esse Livro nao se encontra disponivel ou nao foi encontrado");
 
-                if (livro.getCodigo() == codigoLivro) {
-                    livroEncontrado = livro;
-                    break;
+                    System.out.println("Digite o codigo do Livro novamente: ");
+                    codigoLivro = scanner.nextInt();
                 }
-            }
-
-            if (livroEncontrado == null) {
-                System.out.println("Livro não encontrado.");
-                return null;
             }
 
             livrosEmprestados.add(livroEncontrado);
@@ -128,7 +141,8 @@ public class GerenciamentoDeEmprestimos {
         );
     }
 
-    public void realizarDevolucao() {
+    public void
+    realizarDevolucao() {
         System.out.println("Digite o ID do emprestimo: ");
         int id = scanner.nextInt();
 
