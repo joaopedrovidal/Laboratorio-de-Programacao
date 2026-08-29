@@ -18,207 +18,252 @@ public class Biblioteca {
     int opcao = 0;
 
     public boolean verificaSeExisteLivroPorCodigo(int codigo){
-        for (Livro livro : livros){
-            if (codigo == livro.getCodigo()){
-                return true;
+        try {
+            for (Livro livro : livros){
+                if (codigo == livro.getCodigo()){
+                    return true;
+                }
             }
+
+            return false;
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int letInteriro(){
+        while (!scanner.hasNextInt()){
+            System.out.println("\nValor invalido! Digire apenas um numero inteiro");
+
+            scanner.next();
         }
 
-        return false;
+        return scanner.nextInt();
+    }
+
+    public double lerDecimal(){
+        while (!scanner.hasNextDouble()){
+            System.out.println("\nValor invalido! Digite apenas um numero Inteiro ou Decimal");
+
+            scanner.next();
+        }
+
+        return scanner.nextDouble();
     }
 
     public void cadastrarLivro(){
-        while(true){
-            System.out.println(
-                    "\n--- MENU DE CADASTRO ---" +
-                    "\n Digite 1 para cadastrar um Livro Fisico" +
-                    "\n Digite 2 para cadastrar um Ebook" +
-                    "\n Digite qualquer outra tecla para sair do menu de cadastros"
-            );
+        try {
+            while(true){
+                System.out.println(
+                        "\n--- MENU DE CADASTRO ---" +
+                                "\n Digite 1 para cadastrar um Livro Fisico" +
+                                "\n Digite 2 para cadastrar um Ebook" +
+                                "\n Digite qualquer outra tecla para sair do menu de cadastros"
+                );
 
-            opcao = scanner.nextInt();
+                opcao = letInteriro();
 
-            switch (opcao){
-                case 1:
-                    scanner.nextLine();
+                switch (opcao){
+                    case 1:
+                        scanner.nextLine();
 
-                    System.out.println("Digite o titulo do livro: ");
-                    String titulo = scanner.nextLine();
-
-
-                    System.out.println("Digite o nome do autor do livro: ");
-                    String autor = scanner.nextLine();
+                        System.out.println("Digite o titulo do livro: ");
+                        String titulo = scanner.nextLine();
 
 
-                    System.out.println("Digite o numero de paginas do livro: ");
-                    int paginas = scanner.nextInt();
-
-                    scanner.nextLine();
-
-                    System.out.println("Digite o codigo do livro: ");
-                    int codigo = scanner.nextInt();
-
-                    while(verificaSeExisteLivroPorCodigo(codigo)){
-                        System.out.println("\nOps! Parece que esse Codigo ja esta sendo usado em outro Livro. Tente digitar outro codigo para cadastrar o livro");
-
-                        System.out.println("Digite o Codigo do Livro: ");
-                        codigo = scanner.nextInt();
-                    }
-
-                    scanner.nextLine();
-
-                    System.out.println("Digite o peso do livro em quilograma: ");
-                    double peso = scanner.nextDouble();
-
-                    scanner.nextLine();
-
-                    Livro livro = new LivroFisico(peso, titulo, autor, paginas, codigo);
-                    adicionarLivro(livro);
-                    listarLivros();
-                    break;
-
-                case 2:
-                    scanner.nextLine();
-
-                    System.out.println("Digite o titulo do livro: ");
-                    String tituloEbook = scanner.nextLine();
-
-                    scanner.nextLine();
-
-                    System.out.println("Digite o nome do autor do livro: ");
-                    String autorEbook = scanner.nextLine();
+                        System.out.println("Digite o nome do autor do livro: ");
+                        String autor = scanner.nextLine();
 
 
-                    System.out.println("Digite o numero de paginas do livro: ");
-                    int paginasEbook = scanner.nextInt();
+                        System.out.println("Digite o numero de paginas do livro: ");
+                        int paginas = letInteriro();
 
-                    scanner.nextLine();
+                        scanner.nextLine();
 
-                    System.out.println("Digite o codigo do livro: ");
-                    int codigoEbook = scanner.nextInt();
+                        System.out.println("Digite o codigo do livro: ");
+                        int codigo = letInteriro();
 
-                    while(verificaSeExisteLivroPorCodigo(codigoEbook)){
-                        System.out.println("\nOps! Parece que esse Codigo ja esta sendo usado em outro Livro. Tente digitar outro codigo para cadastrar o livro");
+                        while(verificaSeExisteLivroPorCodigo(codigo)){
+                            System.out.println("\nOps! Parece que esse Codigo ja esta sendo usado em outro Livro. Tente digitar outro codigo para cadastrar o livro");
 
-                        System.out.println("Digite o Codigo do Livro: ");
-                        codigoEbook = scanner.nextInt();
-                    }
+                            System.out.println("Digite o Codigo do Livro: ");
+                            codigo = letInteriro();
+                        }
 
-                    scanner.nextLine();
+                        scanner.nextLine();
 
-                    System.out.println("Digite o tamanho do arquivo em mb: ");
-                    double tamanhoArquivo = scanner.nextDouble();
+                        System.out.println("Digite o peso do livro em quilograma: ");
+                        double peso = lerDecimal();
 
-                    Ebook ebook = new Ebook(tamanhoArquivo,tituloEbook,autorEbook,paginasEbook,codigoEbook);
-                    adicionarLivro(ebook);
-                    listarLivros();
-                    break;
-                default:
-                    System.out.println("Saindo do menu de cadastros...");
-                    return;
+                        scanner.nextLine();
+
+                        Livro livro = new LivroFisico(peso, titulo, autor, paginas, codigo);
+                        adicionarLivro(livro);
+                        listarLivros();
+                        break;
+
+                    case 2:
+                        scanner.nextLine();
+
+                        System.out.println("Digite o titulo do livro: ");
+                        String tituloEbook = scanner.nextLine();
+
+
+                        System.out.println("Digite o nome do autor do livro: ");
+                        String autorEbook = scanner.nextLine();
+
+
+                        System.out.println("Digite o numero de paginas do livro: ");
+                        int paginasEbook = letInteriro();
+
+                        scanner.nextLine();
+
+                        System.out.println("Digite o codigo do livro: ");
+                        int codigoEbook = letInteriro();
+
+                        while(verificaSeExisteLivroPorCodigo(codigoEbook)){
+                            System.out.println("\nOps! Parece que esse Codigo ja esta sendo usado em outro Livro. Tente digitar outro codigo para cadastrar o livro");
+
+                            System.out.println("Digite o Codigo do Livro: ");
+                            codigoEbook = letInteriro();
+                        }
+
+                        scanner.nextLine();
+
+                        System.out.println("Digite o tamanho do arquivo em mb: ");
+                        double tamanhoArquivo = lerDecimal();
+
+                        Ebook ebook = new Ebook(tamanhoArquivo,tituloEbook,autorEbook,paginasEbook,codigoEbook);
+                        adicionarLivro(ebook);
+                        listarLivros();
+                        break;
+                    default:
+                        System.out.println("Saindo do menu de cadastros...");
+                        return;
+                }
             }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
-
     }
 
     public void adicionarLivro(Livro livro){
-        livros.add(livro);
+        try {
+            livros.add(livro);
 
-        System.out.println("\nLivro adicionado: " + livro.getTitulo() + " com sucesso!" );
+            System.out.println("\nLivro adicionado: " + livro.getTitulo() + " com sucesso!" );
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void listarLivros(){
-
-        if(livros.isEmpty()){
-            System.out.println("\nOps! Parece que não existe nenhum Livro Cadastrado no momento, realize o Cadastro dos Livros antes de lista-los.");
-            return;
-        }
-
-        for (Livro l : livros) {
-            System.out.println(
-                    "\n--- BIBLIOTECA ---" +
-                            "\nCodigo do Livro: " + l.getCodigo() +
-                            "\nAutor do Livro: " + l.getAutor() +
-                            "\nTitulo do Livro: " + l.getTitulo() +
-                            "\nNumero de Paginas: " + l.getNumeroDePaginas()
-            );
-            if (l instanceof LivroFisico) {
-                LivroFisico fisico = (LivroFisico) l;
-                System.out.println("\nPeso em Quilogramas: " + fisico.getPeso());
-            } else if (l instanceof Ebook) {
-                Ebook ebook = (Ebook) l;
-                System.out.println("\nTamanho do Arquivo em MB: " + ebook.getTamanhoArquivo());
+        try {
+            if(livros.isEmpty()){
+                System.out.println("\nOps! Parece que não existe nenhum Livro Cadastrado no momento, realize o Cadastro dos Livros antes de lista-los.");
+                return;
             }
-            System.out.println("------------------------");
+
+            for (Livro l : livros) {
+                System.out.println(
+                        "\n--- BIBLIOTECA ---" +
+                                "\nCodigo do Livro: " + l.getCodigo() +
+                                "\nAutor do Livro: " + l.getAutor() +
+                                "\nTitulo do Livro: " + l.getTitulo() +
+                                "\nNumero de Paginas: " + l.getNumeroDePaginas()
+                );
+                if (l instanceof LivroFisico) {
+                    LivroFisico fisico = (LivroFisico) l;
+                    System.out.println("\nPeso em Quilogramas: " + fisico.getPeso());
+                } else if (l instanceof Ebook) {
+                    Ebook ebook = (Ebook) l;
+                    System.out.println("\nTamanho do Arquivo em MB: " + ebook.getTamanhoArquivo());
+                }
+                System.out.println("------------------------");
+            }
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
     }
 
     public Livro buscarLivroPorCodigo(){
-        int codigoLivro = scanner.nextInt();
+        try {
+            int codigoLivro = letInteriro();
 
-        for(Livro l : livros){
-            if (l.codigo == codigoLivro){;
-                return l;
+            for(Livro l : livros){
+                if (l.codigo == codigoLivro){;
+                    return l;
+                }
             }
+            System.out.println("\nOps! Parece que o seu Livro nao foi encontrado.");
+            return null;
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("\nOps! Parece que o seu Livro nao foi encontrado.");
-        return null;
     }
 
     public void excluirLivroPorCodigo(){
+        try {
+            Livro livro = buscarLivroPorCodigo();
 
-        Livro livro = buscarLivroPorCodigo();
+            if(livro == null){
+                return;
+            }
 
-        if(livro == null){
-            return;
+            livros.remove(livro);
+
+            System.out.println("\nLivro " + livro.getTitulo() + " removido com sucesso!" );
+
+            listarLivros();
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
-
-        livros.remove(livro);
-
-        System.out.println("\nLivro " + livro.getTitulo() + " removido com sucesso!" );
-
-        listarLivros();
     }
 
-
     public void editarLivroNaBibliotecaPeloCodigo(){
-        Livro livro = buscarLivroPorCodigo();
+        try {
+            Livro livro = buscarLivroPorCodigo();
 
-        if (livro == null) {
-            return;
-        }
+            if (livro == null) {
+                return;
+            }
 
-        System.out.println("Digite o novo nome do autor: ");
-        String novoAutor = scanner.nextLine();
+            scanner.nextLine();
 
-        scanner.nextLine();
-
-        System.out.println("Digite o novo titulo: ");
-        String novoTitulo = scanner.nextLine();
+            System.out.println("Digite o novo nome do autor: ");
+            String novoAutor = scanner.nextLine();
 
 
-        System.out.println("Digite o novo numero de paginas: ");
-        int novoNumeroDePaginas = scanner.nextInt();
+            System.out.println("Digite o novo titulo: ");
+            String novoTitulo = scanner.nextLine();
 
-        livro.setTitulo(novoTitulo);
-        livro.setAutor(novoAutor);
-        livro.setNumeroDePaginas(novoNumeroDePaginas);
 
-        if(livro instanceof Ebook){
-            Ebook ebook = (Ebook) livro;
+            System.out.println("Digite o novo numero de paginas: ");
+            int novoNumeroDePaginas = letInteriro();
 
-            System.out.println("Digite o novo tamanho do arquivo do Ebook: ");
-            double novoTamanhoArquivoEbook = scanner.nextDouble();
+            livro.setTitulo(novoTitulo);
+            livro.setAutor(novoAutor);
+            livro.setNumeroDePaginas(novoNumeroDePaginas);
 
-            ebook.setTamanhoArquivo(novoTamanhoArquivoEbook);
-        }
-        else if(livro instanceof LivroFisico){
-            LivroFisico fisico = (LivroFisico) livro;
+            if(livro instanceof Ebook){
+                Ebook ebook = (Ebook) livro;
 
-            System.out.println("Digite o novo peso do Livro: ");
-            double novoPeso = scanner.nextDouble();
+                System.out.println("Digite o novo tamanho do arquivo do Ebook: ");
+                double novoTamanhoArquivoEbook = lerDecimal();
 
-            fisico.setPeso(novoPeso);
+                ebook.setTamanhoArquivo(novoTamanhoArquivoEbook);
+            }
+            else if(livro instanceof LivroFisico){
+                LivroFisico fisico = (LivroFisico) livro;
+
+                System.out.println("Digite o novo peso do Livro: ");
+                double novoPeso = lerDecimal();
+
+                fisico.setPeso(novoPeso);
+            }
+            System.out.println("\n Muito bem! Seu Livro foi atualizado com sucesso!");
+        } catch (RuntimeException e) {
+            throw new RuntimeException(e);
         }
     }
 }

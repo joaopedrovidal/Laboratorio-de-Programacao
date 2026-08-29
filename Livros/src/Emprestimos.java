@@ -66,6 +66,10 @@ public class Emprestimos {
     }
 
     public void devolver() {
-        this.dataDevolucao = new Date();
+        try {
+            this.dataDevolucao = new Date();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -59,16 +59,13 @@ public class Principal {
                     System.out.println("Digite o Codigo do Livro que deseja Excluir: ");
                     minhaBiblioteca.excluirLivroPorCodigo();
                 break;
-                case 5:
-
-                break;
                 case 6: gerenciamentoDePessoas.cadastrarPessoa();
                 break;
                 case 7: gerenciamentoDePessoas.listarPessoas();
                 break;
                 case 8: gerenciamentoDePessoas.excluirPessoa();
                 break;
-                case 9:
+                case 9: gerenciamentoDePessoas.editarPessoa();
                 break;
                 case 10: gerenciamentoDeEmprestimos.realizarEmprestimo();
                 break;
